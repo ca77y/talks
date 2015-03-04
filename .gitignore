@@ -1,0 +1,11 @@
+temp/
+dist/
+build/
+__pycache__/
+*.egg-info
+*.pyc
+venv/
+
+.DS_Store
+*.sublime-project
+*.sublime-workspace

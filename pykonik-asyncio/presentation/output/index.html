@@ -1,0 +1,121 @@
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml"><head><title>Asyncio with aiohtto</title><meta name="generator" content="Hovercraft! 1.0 http://regebro.github.com/hovercraft"></meta><link rel="stylesheet" href="css/hovercraft.css" media="all"></link><link rel="stylesheet" href="css/impressConsole.css" media="all"></link><link rel="stylesheet" href="css/highlight.css" media="all"></link><link rel="stylesheet" href="css/presentation.css" media="screen,projection"></link></head><body class="impress-not-supported"><div id="impress"><div class="step" step="0" data-x="0" data-y="0"><h1 id="asyncio-with-aiohtto">Asyncio with aiohtto</h1><h2 id="python-just-got-a-lot-faster-maybe">Python just got a lot faster... maybe...</h2></div><div class="step" step="1" data-x="1600" data-y="0"><h1 id="about-me">About me</h1><p>Tomek Kwiecie&#x144;</p><p><a href="http://about.me/tomek.kwiecien">http://about.me/tomek.kwiecien</a></p><p><a href="https://github.com/ca77y">https://github.com/ca77y</a></p><img src="images/totem.jpg" alt="" width="200px" height="200px"></img></div><div class="step" step="2" data-x="3200" data-y="0"><h1 id="about-keepsafe">About KeepSafe</h1><p><a href="https://www.getkeepsafe.com/">https://www.getkeepsafe.com/</a></p><p><a href="https://github.com/keepsafe">https://github.com/keepsafe</a></p><img src="images/keepsafe-logo.png" alt="" width="" height=""></img><h2 id="we-are-hiring">We are hiring!!!</h2></div><div class="step" step="3" data-x="4800" data-y="0"><h1 id="sync-vs-async">Sync vs Async</h1><img src="images/sync-async.jpg" alt="" width="" height=""></img></div><div class="step" step="4" data-x="6400" data-y="0"><h1 id="async-models">Async Models</h1><ul><li>Callbacks</li><li>Promises</li><li>Generators</li><li>Async Await</li></ul></div><div class="step" step="5" data-x="8000" data-y="0"><h1 id="callbacks">Callbacks</h1><img src="images/pyramid.png" alt="" width="" height=""></img></div><div class="step" step="6" data-x="9600" data-y="0"><h1 id="promises">Promises</h1><pre class="highlight code javascript"><span class="kd">var</span> <span class="nx">promise1</span> <span class="o">=</span> <span class="nx">request</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'www.google.com'</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+            <span class="k">return</span> <span class="s1">''</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="nx">result</span><span class="p">.</span><span class="nx">body</span><span class="p">;</span>
+    <span class="p">})</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nx">result</span><span class="p">;</span>
+    <span class="p">});</span>
+
+<span class="kd">var</span> <span class="nx">promise2</span> <span class="o">=</span> <span class="p">...</span>
+
+<span class="nx">Promise</span><span class="p">.</span><span class="nx">all</span><span class="p">([</span><span class="nx">promise1</span><span class="p">,</span> <span class="nx">promise2</span><span class="p">])</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(...)</span></pre><img src="images/promises.png" alt="" width="" height=""></img></div><div class="step" step="7" data-x="11200" data-y="0"><h1 id="generators">Generators</h1><pre class="highlight code python"><span class="k">def</span> <span class="nf">one</span><span class="p">():</span>
+    <span class="k">return</span> <span class="mi">1</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">one</span><span class="p">()</span>
+<span class="mi">1</span>
+
+<span class="k">def</span> <span class="nf">two</span><span class="p">():</span>
+    <span class="k">yield</span> <span class="mi">2</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">two</span><span class="p">()</span>
+<span class="o">&lt;</span><span class="n">generator</span> <span class="nb">object</span> <span class="n">two</span> <span class="n">at</span> <span class="mh">0x101218240</span><span class="o">&gt;</span></pre><h2 id="yield-from">yield from</h2><pre class="highlight code python"><span class="k">def</span> <span class="nf">one</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+        <span class="k">yield</span> <span class="n">i</span>
+
+<span class="k">def</span> <span class="nf">two</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+        <span class="k">yield</span> <span class="n">i</span>
+
+<span class="k">def</span> <span class="nf">three</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">one</span><span class="p">():</span>
+        <span class="k">yield</span> <span class="n">i</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">two</span><span class="p">():</span>
+        <span class="k">yield</span> <span class="n">i</span>
+
+<span class="k">def</span> <span class="nf">four</span><span class="p">():</span>
+    <span class="k">yield from</span> <span class="n">one</span><span class="p">()</span>
+    <span class="k">yield from</span> <span class="n">two</span><span class="p">()</span></pre></div><div class="step" step="8" data-x="12800" data-y="0"><h1 id="asyncio-basics">asyncio basics</h1><ul><li>Event loop</li><li>Event loop policies</li><li>Coroutines</li><li>Future &amp; Task</li></ul><div class="notes"><p>Event loop management is abstracted with a policy pattern, to provide maximal flexibility for custom platforms and frameworks.
+Throughout the execution of a process, a single global policy object manages the event loops available to the process based on the calling context.
+A policy is an object implementing the AbstractEventLoopPolicy interface.</p><p>A coroutine is a generator that follows certain conventions.
+For documentation purposes, all coroutines should be decorated with @asyncio.coroutine, but this cannot be strictly enforced.</p><p>asyncio.Future class is almost compatible with concurrent.futures.Future.
+Differences:
+* result() and exception() do not take a timeout argument and raise an exception when the future isn&#x2019;t done yet.
+* Callbacks registered with add_done_callback() are always called via the event loop&#x2019;s call_soon_threadsafe().
+* This class is not compatible with the wait() and as_completed() functions in the concurrent.futures package.
+* This class is not thread safe.</p><p>Schedule the execution of a coroutine: wrap it in a future. A task is a subclass of Future.</p></div></div><div class="step" step="9" data-x="14400" data-y="0"><h1 id="code">Code</h1><div class="notes"><p>An event loop runs in a thread and executes all callbacks and tasks in the same thread.
+While a task is running in the event loop, no other task is running in the same thread.
+But when the task uses yield from, the task is suspended and the event loop executes the next task.</p><p>Blocking functions should not be called directly.
+For example, if a function blocks for 1 second, other tasks are delayed by 1 second which can have an important impact on reactivity.</p></div></div><div class="step" step="10" data-x="16000" data-y="0"><h1 id="debug">Debug</h1><ul><li>Log coroutines defined but never &#x201C;yielded from&#x201D;</li><li>call_soon() and call_at() methods raise an exception if they are called from the wrong thread.</li><li>Log the execution time of the selector</li><li>Log callbacks taking more than 100 ms to be executed. The BaseEventLoop.slow_callback_duration attribute is the minimum duration in seconds of &#x201C;slow&#x201D; callbacks.</li><li>ResourceWarning warnings are emitted when transports and event loops are not closed explicitly.</li></ul></div><div class="step" step="11" data-x="17600" data-y="0"><h1 id="gotchas">Gotchas</h1><h2 id="windows">Windows</h2><ul><li>all <em>unix</em> functions ;)</li><li>signals</li><li>pipes</li><li>ssl / subprocesses / ...</li></ul><h2 id="semantics-syntax">semantics &amp; syntax</h2><pre class="highlight code python"><span class="k">def</span> <span class="nf">two</span><span class="p">():</span>
+    <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">yield</span> <span class="mi">2</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">two</span><span class="p">()</span>
+<span class="o">&lt;</span><span class="n">generator</span> <span class="nb">object</span> <span class="n">two</span> <span class="n">at</span> <span class="mh">0x101218b88</span><span class="o">&gt;</span></pre><pre class="highlight code python"><span class="n">lock</span> <span class="o">=</span> <span class="n">Lock</span><span class="p">()</span>
+<span class="o">...</span>
+<span class="k">with</span> <span class="p">(</span><span class="k">yield from</span> <span class="n">lock</span><span class="p">):</span></pre></div><div class="step" step="12" data-x="19200" data-y="0"><h1 id="side-note-libraries">Side-note - libraries</h1><ul><li>Gevent / Eventlet</li><li>Twisted</li></ul></div><div class="step" step="13" data-x="20800" data-y="0"><h1 id="aiohttp">aiohttp</h1><h2 id="http-client-server-for-asyncio">http client/server for asyncio</h2></div><div class="step" step="14" data-x="22400" data-y="0"><h1 id="client-example">client example</h1><pre class="highlight code python"><span class="kn">import</span> <span class="nn">asyncio</span>
+<span class="kn">import</span> <span class="nn">aiohttp</span>
+
+<span class="nd">@asyncio.coroutine</span>
+<span class="k">def</span> <span class="nf">fetch_page</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
+<span class="n">response</span> <span class="o">=</span> <span class="k">yield from</span> <span class="n">aiohttp</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s">'GET'</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">response</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="mi">200</span>
+<span class="k">return</span> <span class="p">(</span><span class="k">yield from</span> <span class="n">response</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+
+<span class="n">content</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">get_event_loop</span><span class="p">()</span><span class="o">.</span><span class="n">run_until_complete</span><span class="p">(</span>
+<span class="n">fetch_page</span><span class="p">(</span><span class="s">'http://python.org'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">content</span><span class="p">)</span></pre></div><div class="step" step="15" data-x="24000" data-y="0"><h1 id="server-example">server example</h1><pre class="highlight code python"><span class="kn">import</span> <span class="nn">asyncio</span>
+<span class="kn">from</span> <span class="nn">aiohttp</span> <span class="kn">import</span> <span class="n">web</span>
+
+<span class="nd">@asyncio.coroutine</span>
+<span class="k">def</span> <span class="nf">handle</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">match_info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'name'</span><span class="p">,</span> <span class="s">"Anonymous"</span><span class="p">)</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="s">"Hello, "</span> <span class="o">+</span> <span class="n">name</span>
+    <span class="k">return</span> <span class="n">web</span><span class="o">.</span><span class="n">Response</span><span class="p">(</span><span class="n">body</span><span class="o">=</span><span class="n">text</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s">'utf-8'</span><span class="p">))</span>
+
+<span class="nd">@asyncio.coroutine</span>
+<span class="k">def</span> <span class="nf">init</span><span class="p">(</span><span class="n">loop</span><span class="p">):</span>
+    <span class="n">app</span> <span class="o">=</span> <span class="n">web</span><span class="o">.</span><span class="n">Application</span><span class="p">(</span><span class="n">loop</span><span class="o">=</span><span class="n">loop</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">router</span><span class="o">.</span><span class="n">add_route</span><span class="p">(</span><span class="s">'GET'</span><span class="p">,</span> <span class="s">'/{name}'</span><span class="p">,</span> <span class="n">handle</span><span class="p">)</span>
+
+    <span class="n">srv</span> <span class="o">=</span> <span class="k">yield from</span> <span class="n">loop</span><span class="o">.</span><span class="n">create_server</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">make_handler</span><span class="p">(),</span>
+                                        <span class="s">'127.0.0.1'</span><span class="p">,</span> <span class="mi">8080</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Server started at http://127.0.0.1:8080"</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">srv</span>
+
+<span class="n">loop</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">get_event_loop</span><span class="p">()</span>
+<span class="n">loop</span><span class="o">.</span><span class="n">run_until_complete</span><span class="p">(</span><span class="n">init</span><span class="p">(</span><span class="n">loop</span><span class="p">))</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">loop</span><span class="o">.</span><span class="n">run_forever</span><span class="p">()</span>
+<span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+    <span class="k">pass</span></pre></div><div class="step" step="16" data-x="25600" data-y="0"><h1 id="streaming">streaming</h1><pre class="highlight code python"><span class="n">r</span> <span class="o">=</span> <span class="k">yield from</span> <span class="n">aiohttp</span><span class="o">.</span><span class="n">request</span><span class="p">(</span>
+<span class="o">...</span>     <span class="s">'get'</span><span class="p">,</span> <span class="s">'https://github.com/timeline.json'</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">r</span><span class="o">.</span><span class="n">content</span>
+<span class="o">&lt;</span><span class="n">aiohttp</span><span class="o">.</span><span class="n">streams</span><span class="o">.</span><span class="n">StreamReader</span> <span class="nb">object</span> <span class="n">at</span> <span class="mi">0</span><span class="n">x</span><span class="o">...&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">yield from</span> <span class="n">r</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="s">'</span><span class="se">\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\x03</span><span class="s">'</span></pre></div><div class="step" step="17" data-x="27200" data-y="0"><h1 id="websockets">websockets</h1><pre class="highlight code python"><span class="nd">@asyncio.coroutine</span>
+<span class="k">def</span> <span class="nf">websocket_handler</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="n">ws</span> <span class="o">=</span> <span class="n">web</span><span class="o">.</span><span class="n">WebSocketResponse</span><span class="p">()</span>
+    <span class="n">ws</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+
+    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="k">yield from</span> <span class="n">ws</span><span class="o">.</span><span class="n">receive_str</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">data</span> <span class="o">==</span> <span class="s">'close'</span><span class="p">:</span>
+                <span class="n">ws</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">ws</span><span class="o">.</span><span class="n">send_str</span><span class="p">(</span><span class="n">data</span> <span class="o">+</span> <span class="s">'/answer'</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">web</span><span class="o">.</span><span class="n">WebSocketDisconnectedError</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="n">exc</span><span class="o">.</span><span class="n">code</span><span class="p">,</span> <span class="n">exc</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">ws</span></pre></div><div class="step" step="18" data-x="28800" data-y="0"><h1 id="middleware">middleware</h1><pre class="highlight code python"><span class="nd">@asyncio.coroutine</span>
+<span class="k">def</span> <span class="nf">middleware_factory</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">handler</span><span class="p">):</span>
+    <span class="nd">@asyncio.coroutine</span>
+    <span class="k">def</span> <span class="nf">middleware</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span><span class="k">yield from</span> <span class="n">handler</span><span class="p">(</span><span class="n">request</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">middleware</span></pre></div><div class="step" step="19" data-x="30400" data-y="0"><h1 id="questions">Questions?</h1></div><div class="step" step="20" data-x="32000" data-y="0"><h1 id="thank-you">Thank you</h1></div></div><div id="hovercraft-help" class="hide"><table><tr><th>Space</th><td>Forward</td></tr><tr><th>Left, Down, Page Down</th><td>Next slide</td></tr><tr><th>Right, Up, Page Up</th><td>Previous slide</td></tr><tr><th>P</th><td>Open presenter console</td></tr><tr><th>H</th><td>Toggle this help</td></tr></table></div><script type="text/javascript" src="js/impress.js"></script><script type="text/javascript" src="js/impressConsole.js"></script><script type="text/javascript" src="js/hovercraft.js"></script></body></html>
