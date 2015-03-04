@@ -1,11 +1,11 @@
 :css: css/presentation.css
 :skip-help: true
 
-.. title:: Asyncio with aiohtto
+.. title:: Asyncio and aiohtto
 
 ----
 
-Asyncio with aiohtto
+Asyncio and aiohtto
 ==========================
 
 Python just got a lot faster... maybe...
