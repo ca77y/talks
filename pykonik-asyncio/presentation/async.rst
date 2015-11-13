@@ -8,7 +8,7 @@
 Asyncio and aiohtto
 ==========================
 
-Python just got a lot faster... maybe...
+How Python got a lot faster... maybe...
 -----------------------------------------
 
 ----
@@ -162,6 +162,13 @@ asyncio basics
 
     Schedule the execution of a coroutine: wrap it in a future. A task is a subclass of Future.
 
+    An event loop runs in a thread and executes all callbacks and tasks in the same thread.
+    While a task is running in the event loop, no other task is running in the same thread.
+    But when the task uses yield from, the task is suspended and the event loop executes the next task.
+
+    Blocking functions should not be called directly.
+    For example, if a function blocks for 1 second, other tasks are delayed by 1 second which can have an important impact on reactivity.
+
 ----
 
 Debug
@@ -204,18 +211,8 @@ semantics & syntax
     ...
     with (yield from lock):
 
-----
-
-Code
-============
-
-.. note::
-    An event loop runs in a thread and executes all callbacks and tasks in the same thread.
-    While a task is running in the event loop, no other task is running in the same thread.
-    But when the task uses yield from, the task is suspended and the event loop executes the next task.
-
-    Blocking functions should not be called directly.
-    For example, if a function blocks for 1 second, other tasks are delayed by 1 second which can have an important impact on reactivity.
+full stack asyncio
+---------------------
 
 ----
 
@@ -245,13 +242,13 @@ client example
 
     @asyncio.coroutine
     def fetch_page(url):
-    response = yield from aiohttp.request('GET', url)
-    assert response.status == 200
-    return (yield from response.read())
+        response = yield from aiohttp.request('GET', url)
+        assert response.status == 200
+        return (yield from response.read())
 
-    content = asyncio.get_event_loop().run_until_complete(
-    fetch_page('http://python.org'))
-    print(content)
+        content = asyncio.get_event_loop().run_until_complete(
+        fetch_page('http://python.org'))
+        print(content)
 
 ----
 
@@ -294,7 +291,7 @@ streaming
 .. code:: python
 
     r = yield from aiohttp.request(
-    ...     'get', 'https://github.com/timeline.json')
+    ...     'get', 'https://github.com/events')
     >>> r.content
     <aiohttp.streams.StreamReader object at 0x...>
     >>> yield from r.content.read(10)

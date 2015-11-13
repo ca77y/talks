@@ -4,7 +4,7 @@ import asyncio
 @asyncio.coroutine
 def task1():
     print('task1')
-
+    yield from asyncio.sleep(5)
     return 'hello world'
 
 
