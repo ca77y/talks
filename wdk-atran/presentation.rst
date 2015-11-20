@@ -96,12 +96,12 @@ Percepcyjne
 Emocjonalne
 ============
 
-* podobnie jak instynkty i refleks
+* niezależne i automatyczne podobnie jak instynkty i refleks
 * emocje pierwszego stopnia: zaskoczenie, strach, gniew, wstręt, smutek, szczęście
 
 ----
 
-Oddzialywania drugiego stopnia
+Oddziaływania drugiego stopnia
 ===============================
 
 Trzy możliwości:
@@ -121,7 +121,8 @@ Konceptualistyczne
 * pierszeństwo modułów (który wybrać do działania)
 
 Atran przyjmuje istnienie *folkpsychology* i *folkbiology*,
-ale nie ma osobnych modułów dla interakcji człowiek-nieczłowiek oraz bilogioczno-społecznego esencjalizmu
+ale nie ma osobnych modułów dla interakcji człowiek-nieczłowiek oraz bilogioczno-społecznych,
+ale interpretowanie źrodeł pochodzenia ludzkiego jest mniej dowolne niż nieludzkiego.
 
 ----
 
@@ -131,6 +132,8 @@ Agenci
 Agenci to jednostki, które inspirują i kontrolują własne zachowania.
 
 Ludzie i inne objekty ożywione są *agentami intencjonalnymi*, którzy działają na podstawie wewnętrznych motywów.
+
+Jeśli ludzie nie nadawaliby innym ludziom cech agentów intencjonalnych nie byłoby sensu w komunikancji międz nimi.
 
 ----
 
@@ -145,8 +148,10 @@ Wrodzony mechanizm wyzwalający
 
     Wikipedia
 
+Rozpoznawanie *agentów* do taki rodzaj wrodzonego mechanizmu wyzwalającego.
+
 Schematy kognitywne do rozpoznawania i interpretowania ożywionych obiektów jako agentów intencjonalnych mogły pełnić krytyczną rolę w ewolucji.
-Pozwalają nam przypisywać intencje dla niewidocznych powodów w niepewnej sytuacji, która może być potencjalnie groźna.
+Pozwalają nam przypisywać intencje przy niewidocznych powodach w niepewnej sytuacji, która może być potencjalnie groźna.
 
 ----
 
@@ -180,7 +185,7 @@ Teliczne strukture
 Najważniejszą cechą telicznych zdarzeń nie jest inicjacja akcji, ale warunek kontroli wyniku akcji.
 Przy utracie kontroli wynik procesu mógłby być inny. Koncepcja *kontrolującej siły* jest kluczowa przy analizowaniu takich zdarzeń.
 
-Teliczne struktury, takie jak np. spadające gwiazdy, powodujące przypisywanie intencji *nadprzyrodzonych agentow*.
+Teliczne struktury, takie jak np. spadające gwiazdy, powodujące przypisywanie intencji *nadprzyrodzonych agentów*.
 
 ----
 
@@ -219,7 +224,7 @@ Atran polemizuje z poglądem jakoby nadprzyrodzone byty były w jakiś sposób o
 
 ----
 
-We wszystkich kulturach nadprzyrodzone byty są tworzone, ponieważ naturalna selekcja uwarunkowała kognitywne wzorce na rozpoznawanie agentow w sytacjach niepewności. Mechanizm rozpoznawania agentów idealnie nadaje się do tworzenia takich bytów.
+We wszystkich kulturach nadprzyrodzone byty są tworzone, ponieważ naturalna selekcja uwarunkowała kognitywne wzorce na rozpoznawanie agentów w sytacjach niepewności. Mechanizm rozpoznawania agentów idealnie nadaje się do tworzenia takich bytów.
 
 ----
 
