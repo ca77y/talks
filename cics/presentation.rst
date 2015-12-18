@@ -27,7 +27,7 @@ Sum of its parts
 
 "The whole is greater than sum of its parts" - Aristotle
 
-* some groups and just a few items thrown together
+* some groups are just a few items thrown together
 * this does not apply to people's creativity
 * some groups are more than a sum of its parts
 * teamwork in scientific papers and patents has increased in 99% of them
